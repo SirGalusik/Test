@@ -1,29 +1,25 @@
-import { useState } from "react";
+import Button from "./Button";
 
 function App(props) {
-  const [counter, setCounter] = useState(0)
-
-  const handlerClick = (event) => {
-    setCounter(counter + 1)
+  const handlerThirdClick = () => {
+    console.log(1);
   }
 
-  const handlerMouseEnter = (event) => {
-    console.log('на мне')
+  const handlerClick = () => {
+    console.log("Click");
   }
 
-  const handlerMouseLeave = (event) => {
-    console.log('вне меня')
+  const handlerMouseEnter = () => {
+    console.log("Enter");
   }
 
-  return (
-    <button 
-      onClick={handlerClick}
-      onMouseEnter={handlerMouseEnter}
-      onMouseLeave={handlerMouseLeave}
-    >
-      Сколько раз нажали на меня {counter}
-    </button>
-  )
+  return <Button 
+            onThirdClick={handlerThirdClick} 
+            onClick={handlerClick}
+            onMouseEnter={handlerMouseEnter}
+        >
+            Нажми на меня
+        </Button>
 }
 
 export default App;
