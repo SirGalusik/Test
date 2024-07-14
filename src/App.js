@@ -1,22 +1,29 @@
-import UserName from './User'
-import Clock from './Clock';
+import { useState } from "react";
 
-function App() {
-  const users = [
-    {name: 'Atryom', surname: 'Galkin'},
-    {name: 'Valya', surname: 'Vizigin'},
-    {name: 'Maksim', surname: 'Kolobov'}
-  ]
+function App(props) {
+  const [counter, setCounter] = useState(0)
+
+  const handlerClick = (event) => {
+    setCounter(counter + 1)
+  }
+
+  const handlerMouseEnter = (event) => {
+    console.log('на мне')
+  }
+
+  const handlerMouseLeave = (event) => {
+    console.log('вне меня')
+  }
 
   return (
-    <div className="App">
-      <UserName user={users[0]}/>
-      <UserName user={users[1]}/>
-      <UserName user={users[2]}/>
-
-      <Clock />
-    </div>
-  );
+    <button 
+      onClick={handlerClick}
+      onMouseEnter={handlerMouseEnter}
+      onMouseLeave={handlerMouseLeave}
+    >
+      Сколько раз нажали на меня {counter}
+    </button>
+  )
 }
 
 export default App;
