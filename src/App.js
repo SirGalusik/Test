@@ -1,25 +1,30 @@
-import Button from "./Button";
+import { useState } from "react";
+
+import Content from "./Content";
+import RecButton from "./RecButton";
 
 function App(props) {
-  const handlerThirdClick = () => {
-    console.log(1);
-  }
+  const [showMode, setShowNode] = useState(true);
+
+  let content = null;
 
   const handlerClick = () => {
-    console.log("Click");
+    setShowNode(!showMode);
   }
 
-  const handlerMouseEnter = () => {
-    console.log("Enter");
+  if(showMode) {
+    content = <Content />;
   }
 
-  return <Button 
-            onThirdClick={handlerThirdClick} 
-            onClick={handlerClick}
-            onMouseEnter={handlerMouseEnter}
-        >
-            Нажми на меня
-        </Button>
+  return (
+    <div>
+      <RecButton />
+
+      <button onClick={handlerClick}>Click here</button>
+      {content}
+    </div>
+
+  )
 }
 
 export default App;
