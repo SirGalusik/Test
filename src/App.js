@@ -1,34 +1,33 @@
-import { useState } from "react";
-
-import Cities from "./Cities";
-import City from "./City";
+import { useEffect, useState } from "react";
 
 function App(props) {
-  const [cities, setCities] = useState([
-    {name: "Москва", description: "Столица России"},
-    {name: "Зеленоград", description: "Научный спутник России"},
-  ])
+  // useEffect(() => {
+  //   console.log(document.querySelector('#target'));
+  // })
 
-  const handlerChangeCity = (n, description) => {
-    setCities(
-      cities.map((city, index) => {
-        if(index === n) {
-          return {
-            ...city,
-            description,
-          } 
-        } else {
-          return city;
-       }
-      })
-    )
-  }
-  
+  // const [users, setUsers] = useState([]);
+  // const [search, setSearch] = useState("");
+
+  // useEffect(() => {
+  //   fetch("/users?search" + search)
+  //       .then((response) => response.json()) 
+  //       .then((users) => setUsers(users));
+  // }, [search])
+
+  const [timer, setTimer] = useState(0)
+
+  useEffect(() => {
+    const flagInterval = setInterval(() => {
+      console.log('fired');
+      setTimer(timer + 1);
+    }, 1000);
+
+    return () => clearInterval(flagInterval);
+  })
+
+
   return (
-    <div>
-      <City cities={cities} onChangeCity={handlerChangeCity}/>
-      <Cities cities={cities}/>
-    </div>
+    <p id="target">{timer}</p>
   )
 }
 
